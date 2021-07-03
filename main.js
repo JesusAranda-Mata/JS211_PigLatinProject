@@ -10,12 +10,49 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
+//If the word starts with a vowel, add yay to the end
+//elephant --> elephantyay
+//egg --> eggyay
+
+//if the word starts with a consonant (non-vowel)
+//find the first vowel,
+//split the word at that vowel,
+// and swap the first half and the second half,
+//then add "ay" to the end
+// fox --> f ox --> oxf --> oxfay
+//create --> cr eate --> eate cr --> eatecray
+
+//if the word has no vowel 
+//then just add ay to the end
+//shh --> shhay
+//tsktsk --> tsktskay
+
 
 const pigLatin = (word) => {
-
-  // Your code here
-
+//myCode
+  let fixedWord = word.trim().toLowerCase()
+  //let firstVawel = fixedWord.match(/[aeiou]/);
+  //console.log(firstVawel);
+  //let vowelPosition = fixedWord.indexOf(firstVawel);
+  //console.log(vowelPosition);
+  let vowelPosition = findPosition(fixedWord)
+  if (vowelPosition > 0){
+  return fixedWord.slice(vowelPosition) + fixedWord.slice(0, vowelPosition) + 'ay'
+  }
+  else {
+    return fixedWord + "yay"
+  }
 }
+
+let findPosition = (word) => {
+  let fixedWord = word.trim().toLowerCase()
+  for (let i=0; i<fixedWord.length; i++){
+    if ('aeiou'.indexOf(fixedWord[i]) !== -1){
+      return i;
+    }
+  }
+}
+
 
 // the first function called in the program to get an input from the user
 // to run the function use the command: node main.js
